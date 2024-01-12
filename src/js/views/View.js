@@ -13,7 +13,11 @@ export default class View {
    * @todo Finish implementation
    */
   render(data, render = true) {
-    if (!data || (Array.isArray(data && data.length === 0))) return this.renderError();
+    //   if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
+
+    const emptyBookmarks = Array.isArray(data) && data.length === 0;
+
+    if (emptyBookmarks) return this.renderError();
 
     this.data = data;
     const markup = this._generateMarkup();
@@ -74,7 +78,7 @@ export default class View {
     <div class="error">
             <div>
               <svg>
-                <use href="${icons}#icon-alert-triangle"></use>
+                <use href="${icons}#icon-smile"></use>
               </svg>
             </div>
             <p>${message}</p>
